@@ -1,0 +1,184 @@
+/* Admin tablet: 801â€“1100px. Keep in sync with tokens/breakpoints.css. */
+
+@media (min-width: 801px) and (max-width: 1100px) {
+  html:has(.dpm-dash[data-menubar-theme="admin"]),
+  body:has(.dpm-dash[data-menubar-theme="admin"]),
+  body:has(.dpm-dash[data-menubar-theme="admin"]) #root {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .dpm-dash[data-menubar-theme="admin"] {
+    height: 100svh !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main {
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin-left: var(--dpm-menubar-width, 4rem) !important;
+    padding: var(--lms-shell-pad-tablet) !important;
+    overflow: hidden !important;
+  }
+
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main > * {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main > .ccm,
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main > .po_desk,
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main > .ah_desk {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 100%;
+  }
+
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main:has(.adm_live .po_desk),
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main:has(.adm_live .ah_desk),
+  .dpm-dash[data-menubar-theme="admin"] .dpm-dash__main:has(.adm_live .ccm) {
+    overflow: auto !important;
+  }
+
+  .emp_desk,
+  .emp_desk.is_compact,
+  .ddm,
+  .ddm.is_compact,
+  .prg_desk,
+  .prg_desk.is_compact,
+  .prg_desk.is_compact.is_picked,
+  .crs_desk,
+  .crs_desk.is_compact {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .ddm.is_compact,
+  .ddm.is_compact.is_picked {
+    display: grid;
+    grid-template-columns: 34% minmax(0, 1fr);
+    gap: 1%;
+  }
+
+  .ddm.is_compact:not(.is_picked) .ddm_stage,
+  .ddm.is_compact.is_picked .ddm_rail {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .ddm.is_compact .ddm_back {
+    display: none !important;
+  }
+
+  .ddm.is_compact .ddm_rail,
+  .ddm.is_compact .ddm_stage {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .ddm.is_compact .ddm_catalogs,
+  .ddm.is_compact .ddm_list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .prg_desk.is_compact,
+  .prg_desk.is_compact.is_picked {
+    display: grid;
+    grid-template-columns: 36% minmax(0, 1fr);
+    gap: 1%;
+  }
+
+  .prg_desk.is_compact.is_picked .prg_desk_list,
+  .prg_desk.is_compact:not(.is_picked) .prg_desk_main {
+    display: flex !important;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .prg_desk.is_compact .prg_desk_back {
+    display: none !important;
+  }
+
+  .prg_desk.is_compact .prg_desk_items {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .emp_desk.is_compact .emp_desk_grid,
+  .emp_desk.is_compact .gds-root,
+  .emp_desk.is_compact .gds-shell,
+  .crs_desk.is_compact .crs_desk_grid,
+  .crs_desk .gds-root,
+  .crs_desk .gds-shell {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .po_layout {
+    grid-template-columns: minmax(0, 58%) minmax(0, 42%);
+  }
+
+  .po_rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ah_kpis,
+  .ah_mid,
+  .ah_low {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ah_kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ccm_tabs,
+  .ccm.is_compact .ccm_tabs {
+    display: flex !important;
+    flex-shrink: 0;
+    visibility: visible;
+    min-height: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .prg_desk,
+  .prg_desk.is_compact,
+  .prg_desk.is_compact.is_picked {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .prg_desk.is_picked .prg_desk_list,
+  .prg_desk.is_compact.is_picked .prg_desk_list {
+    display: none !important;
+  }
+
+  .prg_desk:not(.is_picked) .prg_desk_main,
+  .prg_desk.is_compact:not(.is_picked) .prg_desk_main {
+    display: none !important;
+  }
+
+  .prg_desk.is_compact .prg_desk_back {
+    display: inline-flex !important;
+  }
+}

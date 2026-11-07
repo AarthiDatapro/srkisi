@@ -1,0 +1,53 @@
+:root {
+  --ds-color-error: var(--lms-color-danger);
+}
+
+.ui-field:has(:required) > .ui-field__label::after,
+.stp_field:has(:required) > span:first-child::after,
+.lrn_feedback_preview:has(:required) > span::after,
+.crg_code_ticket:has(:required) > span::after,
+fieldset[data-required-group] > legend::after {
+  content: " *";
+  color: var(--lms-color-danger);
+}
+
+form .ui-field--outlined:has([data-empty="1"]) .ui-input--outlined,
+form .ui-field--outlined:has([data-empty="1"]) .dpm-select,
+form .ui-field--outlined:has([data-empty="1"]) textarea,
+form .stp_field:has([data-empty="1"]) input,
+form .stp_field:has([data-empty="1"]) textarea,
+form .stp_field:has([data-empty="1"]) select,
+form .lrn_feedback_preview:has([data-empty="1"]) textarea,
+form .crg_code_ticket:has([data-empty="1"]) {
+  border-color: var(--lms-color-danger);
+}
+
+form .ui-field:has([data-empty="1"]) > .ui-field__label,
+form .stp_field:has([data-empty="1"]) > span:first-child,
+form .lrn_feedback_preview:has([data-empty="1"]) > span,
+form fieldset[data-empty="1"] > legend {
+  color: var(--lms-color-danger);
+}
+
+form .ui-field:has([data-empty="1"])::after,
+form .stp_field:has([data-empty="1"])::after,
+form .lrn_feedback_preview:has([data-empty="1"])::after,
+form .crg_code_ticket:has([data-empty="1"])::after,
+form fieldset[data-empty="1"]::after {
+  content: "Fill this field";
+  display: block;
+  margin-top: 4px;
+  color: var(--lms-color-danger);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+form fieldset[data-empty="1"] {
+  border-color: var(--lms-color-danger);
+}
+
+form input[data-empty="1"],
+form select[data-empty="1"],
+form textarea[data-empty="1"] {
+  border-color: var(--lms-color-danger);
+}

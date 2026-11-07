@@ -1,0 +1,20 @@
+.image_picker {
+  display: grid;
+  gap: 8px;
+}
+
+.image_picker_remove {
+  justify-self: start;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #e4b3b3;
+  border-radius: 8px;
+  background: #fff4f4;
+  color: #9b1c1c;
+  font: 650 13px/1 var(--lms-font);
+  cursor: pointer;
+}
+
+.image_picker_remove:hover {
+  background: #ffe8e8;
+}

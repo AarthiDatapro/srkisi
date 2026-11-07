@@ -1,0 +1,118 @@
+.dpm-dash[data-menubar-theme="student"] {
+  --dpm-menubar-width-theme: 64px;
+  font-family: var(--lms-font);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-topbar,
+.dpm-dash[data-menubar-theme="student"] .dpm-topbar * {
+  font-family: var(--lms-font);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar {
+  gap: 8px;
+  padding: 12px 0 10px;
+  overflow: visible;
+  background: #0e1118;
+  color: #f4f6f8;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__logo {
+  width: 32px;
+  height: 32px;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__logo svg {
+  width: 24px;
+  height: 24px;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__items {
+  flex: 1;
+  gap: 2px;
+  min-height: 0;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0;
+  border-radius: 12px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item.is-active,
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item[data-active="true"] {
+  background: #EB7828 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(235, 120, 40, 0.4);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item::after {
+  content: attr(aria-label);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  z-index: 30;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #0e1118;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item:hover::after,
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__item:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__items li:nth-last-child(2) {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar__items li:last-child {
+  padding-bottom: 4px;
+}
+
+@media (max-width: 800px) {
+  .dpm-dash[data-menubar-theme="student"] .dpm-menubar {
+    top: 52px;
+    bottom: 0;
+    z-index: 45;
+    height: calc(100svh - 52px);
+    overflow: hidden;
+    padding-bottom: 12px;
+    transform: translateX(-110%);
+    transition: transform 0.2s ease;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .dpm-dash[data-menubar-theme="student"].is-nav-open .dpm-menubar {
+    transform: translateX(0);
+    box-shadow: 8px 0 28px rgba(14, 17, 24, 0.2);
+    pointer-events: auto;
+  }
+}

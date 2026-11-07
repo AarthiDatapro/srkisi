@@ -1,0 +1,2 @@
+ALTER TABLE tbl_students MODIFY email VARCHAR(768) NOT NULL;
+ALTER TABLE tbl_employees MODIFY email VARCHAR(768) NOT NULL;

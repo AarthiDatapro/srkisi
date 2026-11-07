@@ -1,0 +1,10 @@
+ALTER TABLE tbl_students
+    ADD COLUMN college VARCHAR(200) NULL,
+    ADD COLUMN higher_study VARCHAR(200) NULL,
+    ADD COLUMN blood_group VARCHAR(20) NULL,
+    ADD COLUMN address_line VARCHAR(300) NULL,
+    ADD COLUMN pincode VARCHAR(12) NULL,
+    ADD COLUMN state VARCHAR(100) NULL,
+    ADD COLUMN district VARCHAR(100) NULL,
+    ADD COLUMN profile_photo_url VARCHAR(500) NULL,
+    ADD COLUMN access_code VARCHAR(20) NULL UNIQUE;

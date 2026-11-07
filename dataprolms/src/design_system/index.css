@@ -1,0 +1,11 @@
+@import "./tokens/index.css";
+@import "./themes/light.css";
+@import "./themes/dark.css";
+@import "./selects.css";
+
+/* Consistent heading background across LMS tables */
+table thead th,
+[role="table"] [role="columnheader"],
+[role="grid"] [role="columnheader"] {
+  background-color: #c5c9d3 !important;
+}

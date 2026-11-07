@@ -1,0 +1,6 @@
+/* Desktop: above 1100px. Keep in sync with tokens/breakpoints.css. */
+@media (min-width: 1101px) {
+  .dpm-dash .dpm-dash__main {
+    padding: var(--lms-shell-pad) !important;
+  }
+}

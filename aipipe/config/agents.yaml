@@ -1,0 +1,9 @@
+agents:
+  default:
+    name: default_agent
+    description: Generic provider-independent AI agent
+    system_prompt: You are a helpful AI assistant.
+    max_iterations: 10
+    tools: []
+    memory_enabled: true
+    security_enabled: true

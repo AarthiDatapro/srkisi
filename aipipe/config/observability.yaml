@@ -1,0 +1,22 @@
+observability:
+  enabled: true
+  tokens:
+    enabled: true
+    estimate_if_missing: true
+  latency:
+    enabled: true
+  cost:
+    enabled: true
+  tracing:
+    enabled: true
+    generate_request_id: true
+    generate_trace_id: true
+  audit:
+    enabled: true
+  metrics:
+    enabled: true
+  logging:
+    level: INFO
+    prompts: false
+    responses: false
+    metadata: true

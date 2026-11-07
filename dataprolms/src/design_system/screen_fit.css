@@ -1,0 +1,270 @@
+/* Tablet through desktop reflow, and a shorter phone layout.
+   Breakpoints match tokens/breakpoints.css: 1100 and 800. */
+
+@media (max-width: 1100px) {
+  .dpm-dash .dpm-dash__main .aim_kpis,
+  .dpm-dash .dpm-dash__main .stm_kpis,
+  .dpm-dash .dpm-dash__main .ah_kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dpm-dash .dpm-dash__main .aim_grid.is_three,
+  .dpm-dash .dpm-dash__main .anc_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpm-dash .dpm-dash__main .aim_grid.is_wide,
+  .dpm-dash .dpm-dash__main .anc_grid.is_wide,
+  .dpm-dash .dpm-dash__main .jbm_board,
+  .dpm-dash .dpm-dash__main .jbm_facts,
+  .dpm-dash .dpm-dash__main .sth_two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dpm-dash .dpm-dash__main .aim_head,
+  .dpm-dash .dpm-dash__main .stm_head,
+  .dpm-dash .dpm-dash__main .sth_head {
+    align-items: flex-start;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_head_tools,
+  .dpm-dash .dpm-dash__main .stm_head_tools {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_search,
+  .dpm-dash .dpm-dash__main .stm_search,
+  .dpm-dash .dpm-dash__main .aim_head_tools select,
+  .dpm-dash .dpm-dash__main .stm_head_tools select {
+    flex: 1 1 160px;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_table_wrap,
+  .dpm-dash .dpm-dash__main .stm_table_wrap,
+  .dpm-dash .dpm-dash__main .gds-shell__grid,
+  .dpm-dash .dpm-dash__main .ub-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .dpm-dash:has(.adm_live .jbm_desk) .dpm-dash__main {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .dpm-dash .dpm-dash__main .aim_head p,
+  .dpm-dash .dpm-dash__main .stm_head p,
+  .dpm-dash .dpm-dash__main .sth_head p,
+  .dpm-dash .dpm-dash__main .aim_export,
+  .dpm-dash .dpm-dash__main .stm_ghost,
+  .dpm-dash .dpm-dash__main .stm_head_tools .stm_primary,
+  .dpm-dash .dpm-dash__main .aim_dates,
+  .dpm-dash .dpm-dash__main .aim_head_tools select:nth-of-type(n + 2),
+  .dpm-dash .dpm-dash__main .aim_ranges button:nth-child(n + 4) {
+    display: none;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_kpis,
+  .dpm-dash .dpm-dash__main .stm_kpis,
+  .dpm-dash .dpm-dash__main .ah_kpis,
+  .dpm-dash .dpm-dash__main .sth_stats,
+  .dpm-dash .dpm-dash__main .sth_hk_summary,
+  .dpm-dash .dpm-dash__main .po_rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dpm-dash .dpm-dash__main .aim_kpis > :nth-child(n + 5),
+  .dpm-dash .dpm-dash__main .stm_kpis > :nth-child(n + 5),
+  .dpm-dash .dpm-dash__main .ah_kpis > :nth-child(n + 5),
+  .dpm-dash .dpm-dash__main .sth_stats > :nth-child(n + 5),
+  .dpm-dash .dpm-dash__main .sth_hk_summary > :nth-child(n + 5),
+  .dpm-dash .dpm-dash__main .po_rail > :nth-child(n + 5) {
+    display: none;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_body > .aim_grid,
+  .dpm-dash .dpm-dash__main .aim_body > .aim_panel:not(:last-child),
+  .dpm-dash .dpm-dash__main .anc_body > .anc_grid:not(:has(.aim_table)),
+  .dpm-dash .dpm-dash__main .anc_body > .anc_grid.is_wide > .aim_panel:not(:has(.aim_table)),
+  .dpm-dash .dpm-dash__main .aim_panel:has(.anc_register),
+  .dpm-dash .dpm-dash__main .sth_two,
+  .dpm-dash .dpm-dash__main .sth_overview > .sth_panel:not(:last-child),
+  .dpm-dash .dpm-dash__main .sth_overview > .sth_panel:has(+ .sth_list),
+  .dpm-dash .dpm-dash__main .sth_meters,
+  .dpm-dash .dpm-dash__main .stm_grades,
+  .dpm-dash .dpm-dash__main .ah_mid > .ah_card:nth-child(-n + 2),
+  .dpm-dash .dpm-dash__main .ah_foot,
+  .dpm-dash .dpm-dash__main .po_side,
+  .dpm-dash .dpm-dash__main .po_main > :not(:first-child) {
+    display: none;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_head_tools,
+  .dpm-dash .dpm-dash__main .stm_head_tools,
+  .dpm-dash .dpm-dash__main .aim_search,
+  .dpm-dash .dpm-dash__main .stm_search {
+    width: 100%;
+  }
+
+  .dpm-dash .dpm-dash__main .stm_table th:nth-child(1),
+  .dpm-dash .dpm-dash__main .stm_table td:nth-child(1),
+  .dpm-dash .dpm-dash__main .stm_table th:nth-child(2),
+  .dpm-dash .dpm-dash__main .stm_table td:nth-child(2),
+  .dpm-dash .dpm-dash__main .stm_table th:nth-child(n + 4):nth-child(-n + 9),
+  .dpm-dash .dpm-dash__main .stm_table td:nth-child(n + 4):nth-child(-n + 9) {
+    display: none;
+  }
+
+  .dpm-dash .dpm-dash__main .gds-shell .ub-table th:nth-child(n + 3):not(:last-child),
+  .dpm-dash .dpm-dash__main .gds-shell .ub-table td:nth-child(n + 3):not(:last-child) {
+    display: none;
+  }
+
+  .dpm-dash .dpm-dash__main .stm_student {
+    min-width: 0;
+  }
+
+  .dpm-dash .dpm-dash__main .aim_iv_facts,
+  .dpm-dash .dpm-dash__main .aim_detail_facts,
+  .dpm-dash .dpm-dash__main .anc_detail_stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stm_preview_bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stm_preview_paper {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .stm_preview_paper .rpc_sheet {
+    width: 100%;
+    min-width: 0;
+  }
+
+  html body > .ui-modal,
+  html body > .crs_open,
+  html body > .adm_confirm_scrim,
+  html body > .ccm_confirm_scrim,
+  html body > .sra_confirm_scrim,
+  html body > .stm_preview {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html body > .ui-modal .ui-modal__panel,
+  html body > .ui-modal .ui-modal__panel--wide,
+  html body > .ui-modal .ui-modal__panel--sheet,
+  html body > .crs_open .crs_pick_card,
+  html body > .adm_confirm_scrim .adm_confirm_card {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  html body > .ui-modal .ui-modal__head {
+    margin: 6px 6px 0 !important;
+    min-height: 44px !important;
+    padding: 0 6px 0 10px !important;
+  }
+
+  html body > .ui-modal .ui-modal__body,
+  html body > .ui-modal .prg_form,
+  html body > .ui-modal .prg_form_fields,
+  html body > .ui-modal .prg_form_fields > *,
+  html body > .ui-modal .prg_form_row,
+  html body > .ui-modal .ui-field,
+  html body > .ui-modal .ccm_form,
+  html body > .ui-modal .ccm_item_form,
+  html body > .ui-modal .ccm_student_form,
+  html body > .ui-modal .ccm_student_form_grid,
+  html body > .ui-modal input,
+  html body > .ui-modal textarea,
+  html body > .ui-modal select {
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  html body > .ui-modal .lms_stage,
+  html body > .ui-modal .prg_form > .lms_stage {
+    margin: 6px 6px 0 !important;
+    padding: 8px 40px 8px 8px !important;
+  }
+
+  html body > .ui-modal .prg_form_fields,
+  html body > .ui-modal .crs_form .prg_form_fields,
+  html body > .ui-modal .emp_form .prg_form_fields,
+  html body > .ui-modal .jbm_form .prg_form_fields,
+  html body > .ui-modal .ccm_student_form,
+  html body > .ui-modal .crs_assign,
+  html body > .ui-modal .crs_passkey_panel,
+  html body > .ui-modal .ccm_preview {
+    gap: 8px !important;
+    margin: 6px !important;
+    padding: 0 !important;
+  }
+
+  html body > .ui-modal .prg_form_fields > *,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ui-field,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_row,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_pair,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_triple,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_check,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_qedit,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_qedit_head,
+  html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_mix,
+  html body > .ui-modal .crs_passkey_panel > .ui-field {
+    padding: 8px !important;
+  }
+
+  html body > .ui-modal .prg_form_row,
+  html body > .ui-modal .crs_form .prg_form_row,
+  html body > .ui-modal .emp_form .prg_form_row,
+  html body > .ui-modal .ccm_form_row,
+  html body > .ui-modal .ccm_form_pair,
+  html body > .ui-modal .ccm_form_triple,
+  html body > .ui-modal .ccm_student_form_grid,
+  html body > .ui-modal .prg_details_meta {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  html body > .ui-modal .prg_form_foot,
+  html body > .ui-modal .ccm_form_foot,
+  html body > .ui-modal .prg_details_foot {
+    padding: 8px !important;
+  }
+
+  html body > .crs_open {
+    padding: 8px !important;
+  }
+
+  html body > .crs_open .crs_pick_card,
+  html body > .adm_confirm_scrim .adm_confirm_card,
+  html body > .adm_confirm_scrim,
+  html body > .ccm_confirm_scrim,
+  html body > .sra_confirm_scrim {
+    padding: 8px !important;
+  }
+
+  html body > .stm_preview .stm_preview_bar {
+    padding: 8px 10px !important;
+  }
+
+  html body > .stm_preview .stm_preview_stage {
+    padding: 8px !important;
+  }
+}

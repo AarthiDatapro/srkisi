@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "description": "Write a function that takes a list of numbers as input and returns the largest number present in the list. If the list is empty, the function should return None.",
+  "language": "python",
+  "function_name": "find_largest_number",
+  "reference_code": "def find_largest_number(numbers):\n    if not numbers:\n        return None\n    return max(numbers)",
+  "test_cases": [
+    {
+      "test_case": 1,
+      "inputs": [
+        [
+          1,
+          5,
+          3,
+          9,
+          2
+        ]
+      ],
+      "output": 9,
+      "error": null
+    },
+    {
+      "test_case": 2,
+      "inputs": [
+        [
+          -10,
+          -5,
+          -20,
+          -2
+        ]
+      ],
+      "output": -2,
+      "error": null
+    },
+    {
+      "test_case": 3,
+      "inputs": [
+        [
+          7
+        ]
+      ],
+      "output": 7,
+      "error": null
+    },
+    {
+      "test_case": 4,
+      "inputs": [
+        []
+      ],
+      "output": null,
+      "error": null
+    },
+    {
+      "test_case": 5,
+      "inputs": [
+        [
+          1.5,
+          2.8,
+          2.1,
+          0.9
+        ]
+      ],
+      "output": 2.8,
+      "error": null
+    }
+  ],
+  "validation": {
+    "status": "valid",
+    "errors": []
+  }
+}

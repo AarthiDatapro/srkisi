@@ -1,0 +1,6 @@
+memory:
+  enabled: true
+  scope: conversation
+  store: in_memory
+  checkpointing: true
+  max_messages: 100

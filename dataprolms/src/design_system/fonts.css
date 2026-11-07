@@ -1,0 +1,29 @@
+/* One UI typeface for the whole app. Code/mono faces stay as-is. */
+
+html,
+body,
+#root,
+.dpm-dash,
+.dpm-dash__main,
+.dpm-topbar,
+.dpm-menubar,
+.stu_reg,
+.stu-reg__welcome,
+button,
+input,
+select,
+textarea,
+.dpm-dash :where(:not(code):not(pre):not(kbd):not(samp)),
+.stu_reg :where(:not(code):not(pre):not(kbd):not(samp)),
+.stu-reg__welcome :where(:not(code):not(pre):not(kbd):not(samp)) {
+  font-family: var(--lms-font) !important;
+}
+
+.dpm-dash code,
+.dpm-dash pre,
+.dpm-dash kbd,
+.dpm-dash samp,
+.lrn_chat_code,
+.stp_key input {
+  font-family: Consolas, "Courier New", ui-monospace, monospace !important;
+}

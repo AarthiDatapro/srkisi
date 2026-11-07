@@ -1,0 +1,5 @@
+:root {
+  /* Copy these px values into @media. CSS cannot use var() in media queries. */
+  --lms-bp-phone: 800px;
+  --lms-bp-tablet: 1100px;
+}

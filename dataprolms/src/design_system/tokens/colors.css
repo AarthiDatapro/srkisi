@@ -1,0 +1,30 @@
+:root {
+  --ds-color-brand: #EB7828;
+  --ds-color-brand-hover: #C45A12;
+  --ds-color-brand-mid: #00A899;
+  --ds-color-brand-soft: #FFF1E3;
+  --ds-color-error: #d14343;
+  --ds-color-page: #F4F1EB;
+  --lms-color-brand: #EB7828;
+  --lms-color-brand-hover: #C45A12;
+  --lms-color-hero-start: #C45A12;
+  --lms-color-hero-end: #00A899;
+  --lms-color-charcoal: #1C140C;
+  --lms-color-page: #F4F1EB;
+  --lms-color-white: #ffffff;
+  --lms-color-text: #2a241c;
+  --lms-color-error-bg: #FFF1E3;
+  --lms-color-danger: #d14343;
+}
+
+.stu_reg {
+  --stu-color-brand: var(--lms-color-brand);
+  --stu-color-brand-hover: var(--lms-color-brand-hover);
+  --stu-color-hero-start: var(--lms-color-hero-start);
+  --stu-color-hero-end: var(--lms-color-hero-end);
+  --stu-color-charcoal: var(--lms-color-charcoal);
+  --stu-color-page: var(--lms-color-page);
+  --stu-color-white: var(--lms-color-white);
+  --stu-color-text: var(--lms-color-text);
+  --stu-color-error-bg: var(--lms-color-error-bg);
+}

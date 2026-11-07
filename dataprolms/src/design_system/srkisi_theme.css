@@ -1,0 +1,74 @@
+/* SRKISI mark in the rail. The package menubar still draws its own glyph. */
+
+.dpm-menubar__logo {
+  background-image: url("/srkisi_mark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px 32px;
+}
+
+.dpm-menubar__logo svg {
+  opacity: 0;
+}
+
+.dpm-menubar[data-menubar-theme="admin"],
+.dpm-dash[data-menubar-theme="admin"] .dpm-menubar,
+.dpm-dash[data-menubar-theme="student"] .dpm-menubar {
+  --dpm-menubar-bg: #111111;
+  --dpm-menubar-active: #EB7828;
+  background: #111111;
+}
+
+.dpm-dash[data-menubar-theme] {
+  --dpm-dash-bg: #F4F1EB;
+  background: #F4F1EB;
+}
+
+.dpm-topbar__title {
+  color: #1C140C;
+}
+
+.stu-reg__welcome {
+  background:
+    radial-gradient(circle at 16% 12%, rgba(235, 120, 40, 0.55), transparent 42%),
+    radial-gradient(circle at 86% 84%, rgba(0, 168, 153, 0.48), transparent 46%),
+    #111111;
+}
+
+.dpm-forgot__chip {
+  background: #FFF1E3;
+  color: #C45A12;
+}
+
+.dpm-forgot__link,
+.dpm-login-submit__link,
+.dpm-submit-bar__link,
+.dpm-form-header__chip,
+.dpm-success__id,
+.ui-iconbtn,
+.ui-modal__head h2 {
+  color: #EB7828;
+}
+
+.ui-iconbtn:hover {
+  background: #FFF1E3;
+}
+
+.dpm-tabs button.is-on {
+  color: #EB7828;
+  border-bottom-color: #EB7828;
+}
+
+.dpm-progress__track {
+  background: #FFF1E3;
+}
+
+.dpm-progress__track i,
+.ui-toast--success {
+  background: #EB7828;
+}
+
+.ui-pagination button.is-on {
+  border-color: #EB7828;
+  background: #EB7828;
+}

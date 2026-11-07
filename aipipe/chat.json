@@ -1,0 +1,10 @@
+{
+    "messages":  [
+                     {
+                         "content":  "Reply with exactly: HELLO",
+                         "role":  "user"
+                     }
+                 ],
+    "model":  "gemma4:cloud",
+    "stream":  false
+}

@@ -1,0 +1,200 @@
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.dpm-dash,
+.dpm-dash__main,
+.dpm-dash__main > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dpm-dash .dpm-dash__main {
+  box-sizing: border-box;
+  width: auto;
+}
+
+/* Tablet and phone: 1100px and below. Keep in sync with tokens/breakpoints.css. */
+@media (max-width: 1100px) {
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  html:has(.dpm-dash),
+  body:has(.dpm-dash),
+  body:has(.dpm-dash) #root,
+  html:has(.dpm-dash) .dpm-dash,
+  html:has(.dpm-dash) .dpm-dash .dpm-dash__main {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  html:has(.dpm-dash) .dpm-dash .dpm-dash__main {
+    width: auto !important;
+  }
+
+  html:has(.dpm-dash) .dpm-dash .dpm-dash__main > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .dpm-dash__main h1,
+  .dpm-dash__main h2,
+  .dpm-dash__main h3,
+  .dpm-dash__main p {
+    overflow-wrap: break-word;
+  }
+}
+
+/* Phone: 800px and below. Keep in sync with tokens/breakpoints.css. */
+@media (max-width: 800px) {
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  html:has(.dpm-dash),
+  body:has(.dpm-dash),
+  body:has(.dpm-dash) #root {
+    height: auto !important;
+    min-height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .dpm-dash,
+  .dpm-dash__main,
+  .stu_reg,
+  .stu_dash {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  html:has(.dpm-dash) .dpm-dash,
+  .dpm-dash {
+    height: auto !important;
+    min-height: 0;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  html:has(.dpm-dash) .dpm-dash .dpm-dash__main,
+  .dpm-dash .dpm-dash__main {
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    padding: var(--lms-shell-pad-phone) !important;
+    height: auto !important;
+    min-height: 0;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .dpm-dash__main h1 {
+    font-size: clamp(18px, 5vw, 22px);
+    overflow-wrap: anywhere;
+  }
+
+  .ub-table-wrap,
+  .gds-shell__grid,
+  .prg_table_wrap,
+  .prg_desk_grid,
+  .crs_desk_board {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ui-toasts {
+    top: auto !important;
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    align-content: end;
+    justify-items: stretch;
+  }
+
+  .ui-toast {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 12px;
+  }
+
+  .ui-modal {
+    width: 100%;
+  }
+
+  .ui-modal__panel,
+  .ui-modal__panel--wide,
+  .ui-modal__panel--sheet {
+    width: 100%;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+
+  .lms_phone_gate {
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 28px 20px;
+    background: #F7F4EF;
+    color: #1c1733;
+    font-family: var(--lms-font);
+  }
+
+  .lms_phone_gate h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+
+  .lms_phone_gate p {
+    margin: 0;
+    max-width: 28rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .lms_phone_gate button {
+    align-self: flex-start;
+    min-height: 40px;
+    margin-top: 8px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 999px;
+    background: #EB7828;
+    color: #fff;
+    font: 600 13px/40px var(--lms-font);
+    cursor: pointer;
+  }
+}

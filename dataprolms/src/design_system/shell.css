@@ -1,0 +1,767 @@
+/* AppShell main pad — one place for every dashboard screen.
+   Feature CSS must not set padding on .dpm-dash__main.
+   Override with --lms-shell-pad on a screen root if needed. */
+
+:root {
+  --lms-shell-pad: 12px 16px 16px;
+  --lms-shell-pad-phone: 12px 12px 16px;
+  --lms-shell-pad-tablet: 12px 14px;
+}
+
+html:has(.dpm-dash),
+body:has(.dpm-dash),
+body:has(.dpm-dash) #root {
+  height: 100%;
+  min-height: 100svh;
+  background: #ffffff;
+}
+
+.dpm-dash .ui-button {
+  border-radius: 6px;
+}
+
+.adm_screen_parked,
+.adm_panel_parked {
+  display: none !important;
+}
+
+/* The shell locks the window (overflow: hidden, height: 100svh) and expects
+   each screen to scroll inside main. Keep-alive puts .adm_live between main
+   and the screen, so height: 100% on the desk never resolved and the page
+   was clipped. This wrapper is the missing link. */
+.dpm-dash__main > .adm_live {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+
+.dpm-dash__main > .adm_live:has(> :is(
+  .prg_desk,
+  .cht_desk,
+  .crs_desk,
+  .emp_desk,
+  .jbm_desk,
+  .ddm,
+  .smi_desk,
+  .lrn_desk
+)) {
+  overflow: hidden;
+}
+
+.dpm-dash__main > .adm_live > :is(
+  .prg_desk,
+  .cht_desk,
+  .crs_desk,
+  .emp_desk,
+  .jbm_desk,
+  .ddm,
+  .smi_desk,
+  .lrn_desk
+) {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+.dpm-dash .dpm-dash__main {
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: var(--lms-shell-pad) !important;
+  overflow-x: hidden;
+}
+
+/* Scrollable workspaces (not fill-viewport desks like programs/courses/employees). */
+html:has(.dpm-dash .adm_live .ah_desk),
+body:has(.dpm-dash .adm_live .ah_desk),
+body:has(.dpm-dash .adm_live .ah_desk) #root,
+html:has(.dpm-dash .adm_live .po_desk),
+body:has(.dpm-dash .adm_live .po_desk),
+body:has(.dpm-dash .adm_live .po_desk) #root,
+html:has(.dpm-dash .adm_live .stp_desk),
+body:has(.dpm-dash .adm_live .stp_desk),
+body:has(.dpm-dash .adm_live .stp_desk) #root,
+html:has(.dpm-dash .adm_live .myc_desk),
+body:has(.dpm-dash .adm_live .myc_desk),
+body:has(.dpm-dash .adm_live .myc_desk) #root,
+html:has(.dpm-dash .adm_live .crg_desk),
+body:has(.dpm-dash .adm_live .crg_desk),
+body:has(.dpm-dash .adm_live .crg_desk) #root,
+html:has(.dpm-dash .adm_live .shd_container),
+body:has(.dpm-dash .adm_live .shd_container),
+body:has(.dpm-dash .adm_live .shd_container) #root,
+html:has(.dpm-dash .adm_live .sjb_desk),
+body:has(.dpm-dash .adm_live .sjb_desk),
+body:has(.dpm-dash .adm_live .sjb_desk) #root,
+html:has(.dpm-dash .adm_live .ccm),
+body:has(.dpm-dash .adm_live .ccm),
+body:has(.dpm-dash .adm_live .ccm) #root {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.dpm-dash:has(.adm_live .ah_desk),
+.dpm-dash:has(.adm_live .po_desk),
+.dpm-dash:has(.adm_live .stp_desk),
+.dpm-dash:has(.adm_live .myc_desk),
+.dpm-dash:has(.adm_live .crg_desk),
+.dpm-dash:has(.adm_live .shd_container),
+.dpm-dash:has(.adm_live .sjb_desk),
+.dpm-dash:has(.adm_live .ccm) {
+  height: auto;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+.dpm-dash:has(.adm_live .ah_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .po_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .stp_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .myc_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .crg_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .shd_container) .dpm-dash__main,
+.dpm-dash:has(.adm_live .sjb_desk) .dpm-dash__main,
+.dpm-dash:has(.adm_live .ccm) .dpm-dash__main {
+  display: block;
+  height: auto;
+  min-height: 100svh;
+}
+
+/* Screen-specific pad tweaks (variable only — not a second padding rule). */
+.dpm-dash:has(.adm_live .sjb_desk) {
+  --lms-shell-pad: 0;
+  --lms-shell-pad-phone: 0;
+  --lms-shell-pad-tablet: 0;
+}
+
+.dpm-dash:has(.adm_live .po_desk) {
+  --lms-shell-pad: 10px 12px 14px;
+}
+
+.dpm-dash:has(.adm_live .lrn_desk) {
+  --lms-shell-pad: 8px 12px 12px;
+}
+
+.dpm-dash:has(.adm_live .crs_desk),
+.dpm-dash:has(.adm_live .emp_desk),
+.dpm-dash:has(.adm_live .ddm),
+.dpm-dash:has(.adm_live .prg),
+.dpm-dash:has(.adm_live .cfm_desk) {
+  --lms-shell-pad: 12px 14px 12px;
+}
+
+.dpm-dash:has(.adm_live .ddm.is_compact) {
+  --lms-shell-pad: 4px;
+}
+
+.dpm-dash:has(.adm_live .emp_desk.is_compact),
+.dpm-dash:has(.adm_live .ccm.is_compact) {
+  --lms-shell-pad: 8px;
+}
+
+@media (max-width: 1100px) {
+  .dpm-dash:has(.adm_live .crs_desk) {
+    --lms-shell-pad: 12px 12px 24px;
+  }
+
+  .dpm-dash:has(.adm_live .ah_desk) {
+    --lms-shell-pad: 14px 16px 28px;
+  }
+
+  .dpm-dash:has(.adm_live .shd_container) {
+    --lms-shell-pad: 12px 14px 20px;
+  }
+
+  .dpm-dash:has(.adm_live .crg_desk) {
+    --lms-shell-pad: 10px 14px 16px;
+  }
+
+  .dpm-dash:has(.adm_live .ccm) {
+    --lms-shell-pad: 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  .dpm-dash:has(.adm_live .prg_desk) {
+    --lms-shell-pad: 10px 12px 20px;
+  }
+
+  .dpm-dash:has(.adm_live .po_desk) {
+    --lms-shell-pad: 8px 8px 16px;
+  }
+
+  .dpm-dash:has(.adm_live .ah_desk) {
+    --lms-shell-pad: 14px 16px 24px;
+  }
+
+  .dpm-dash:has(.adm_live .stp_desk),
+  .dpm-dash:has(.adm_live .myc_desk),
+  .dpm-dash:has(.adm_live .crg_desk),
+  .dpm-dash:has(.adm_live .lrn_desk) {
+    --lms-shell-pad: 8px 12px 16px;
+  }
+
+  .dpm-dash:has(.adm_live .shd_container) {
+    --lms-shell-pad: 10px 12px 20px;
+  }
+
+  .dpm-dash:has(.adm_live .crs_desk),
+  .dpm-dash:has(.adm_live .ccm) {
+    --lms-shell-pad: 12px;
+  }
+}
+
+/* Screen shells. Feature CSS must not set layout on .dpm-dash__main. */
+
+/* src/course_learning/theme/learn.css */
+.dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+}
+
+.dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main > .adm_live {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+.dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main {
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+.dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main > .adm_live {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 800px) {
+html:has(.dpm-dash) .dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main,
+  .dpm-dash:has(.adm_live .lrn_desk) .dpm-dash__main {
+    overflow-x: hidden;
+  }
+}
+
+
+/* src/course_content_manager/theme/content.css */
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .ccm) .dpm-dash__main {
+    width: auto !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+}
+
+@media (max-width: 720px) {
+.dpm-dash:has(.adm_live .ccm) .dpm-dash__main {
+    width: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+
+/* Cohorts and programs: left column stays the screen height; the right column scrolls. */
+@media (min-width: 1101px) {
+  html:has(.dpm-dash .adm_live .cht_desk),
+  body:has(.dpm-dash .adm_live .cht_desk),
+  body:has(.dpm-dash .adm_live .cht_desk) #root,
+  html:has(.dpm-dash .adm_live .prg_desk),
+  body:has(.dpm-dash .adm_live .prg_desk),
+  body:has(.dpm-dash .adm_live .prg_desk) #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .dpm-dash:has(.adm_live .cht_desk),
+  .dpm-dash:has(.adm_live .prg_desk) {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .dpm-dash:has(.adm_live .cht_desk) .dpm-dash__main,
+  .dpm-dash:has(.adm_live .prg_desk) .dpm-dash__main {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .dpm-dash:has(.adm_live .cht_desk) .dpm-dash__main > .adm_live,
+  .dpm-dash:has(.adm_live .prg_desk) .dpm-dash__main > .adm_live {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* Cohorts stacks into one column below desktop. The window stays locked,
+   so the keep-alive wrapper scrolls that column. */
+@media (max-width: 1100px) {
+  .dpm-dash__main > .adm_live:has(> .cht_desk) {
+    overflow: auto;
+  }
+
+  .dpm-dash__main > .adm_live > .cht_desk {
+    flex: none;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+/* src/course_manager/theme/courses.css */
+.dpm-dash:has(.adm_live .crs_desk) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .crs_desk) .dpm-dash__main {
+    width: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+}
+
+@media (max-width: 720px) {
+.dpm-dash:has(.adm_live .crs_desk) .dpm-dash__main {
+    overflow: auto;
+  }
+}
+
+
+/* src/programs_control/theme/programs.css */
+.dpm-dash:has(.adm_live .prg) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .prg) .dpm-dash__main {
+    overflow: auto;
+  }
+}
+
+
+/* src/programs_control/theme/workspace.css */
+.dpm-dash:has(.adm_live .prg_desk) .dpm-dash__main {
+  container-type: inline-size;
+  container-name: prg-main;
+}
+
+@media (max-width: 800px) {
+.dpm-dash:has(.adm_live .prg_desk) .dpm-dash__main {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-left: 0 !important;
+    overflow: visible !important;
+  }
+}
+
+
+/* src/student_mock_interview/theme/interview.css */
+.dpm-dash:has(.adm_live .smi_desk) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+.dpm-dash:has(.adm_live .smi_desk) .dpm-dash__main {
+    height: auto;
+    max-height: none;
+    overflow: auto;
+  }
+
+  .smi_desk,
+  .smi_board,
+  .smi_curtain { height: auto; }
+}
+
+
+/* src/jobs_manager/theme/jobs.css */
+.dpm-dash:has(.adm_live .jbm_desk) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+.dpm-dash:has(.adm_live .jbm_desk) .dpm-dash__main {
+    overflow: auto;
+  }
+}
+
+
+/* src/employee_manager/theme/employees.css */
+.dpm-dash:has(.adm_live .emp_desk) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .emp_desk.is_compact) .dpm-dash__main {
+    display: flex !important;
+    flex-direction: column;
+    width: auto !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 800px) {
+.dpm-dash:has(.adm_live .emp_desk.is_compact) .dpm-dash__main {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+
+/* src/dropdown_manager/theme/dropdowns.css */
+.dpm-dash:has(.adm_live .ddm) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dpm-dash:has(.adm_live .ddm) .dpm-dash__main > .adm_live {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dpm-dash:has(.adm_live .ddm) .adm_live > .ddm {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .ddm.is_compact) .dpm-dash__main {
+    display: flex !important;
+    flex-direction: column;
+    width: auto !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 800px) {
+.dpm-dash:has(.adm_live .ddm.is_compact) .dpm-dash__main {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+
+/* src/performance_dashboard/theme/dashboard.css */
+@media (max-width: 1100px) {
+.dpm-dash:has(.adm_live .po_desk) .dpm-dash__main {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+}
+
+/* Forms cover the window. They are not a column in the page, so the screen
+   behind them keeps its size. 100vw is wider than the page and was shrinking it. */
+html body > .ui-modal,
+html body > .ccm_confirm_scrim,
+html body > .adm_confirm_scrim,
+html body > .sra_confirm_scrim,
+html body > .smi_confirm_scrim,
+html body > .crs_open {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+}
+
+html body > .ui-modal {
+  z-index: 70 !important;
+}
+
+/* Shared drawer. Gray canvas, floating title, white field cards.
+   Course catalog preview and details keep their own full-bleed layout. */
+html body > .ui-modal:not(:has(.crg_preview)):not(:has(.crg_details)):not(:has(.crg_code)) .ui-modal__panel {
+  background: #f4f6fb !important;
+}
+
+html body > .ui-modal:not(:has(.crg_preview)):not(:has(.crg_details)):not(:has(.crg_code)) .ui-modal__head {
+  margin: 12px 12px 0 !important;
+  min-height: 52px !important;
+  padding: 0 8px 0 16px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+}
+
+html body > .ui-modal:not(:has(.crg_preview)):not(:has(.crg_details)):not(:has(.crg_code)) .ui-modal__close {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 10px !important;
+  background: #f3f6fb !important;
+}
+
+html body > .ui-modal:has(.lms_stage) .ui-modal__head,
+html body > .ui-modal:has(.ccm_item_stage) .ui-modal__head {
+  display: none !important;
+}
+
+html body > .ui-modal .lms_stage,
+html body > .ui-modal .ccm_item_stage {
+  position: relative;
+  padding-right: 48px;
+}
+
+html body > .ui-modal .lms_stage_close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  background: #f3f6fb;
+  color: #1d2433;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+html body > .ui-modal:not(:has(.crg_preview)):not(:has(.crg_details)):not(:has(.crg_code)) .ui-modal__body {
+  background: transparent !important;
+}
+
+html body > .ui-modal .prg_form > .lms_stage {
+  margin: 14px 16px 0;
+}
+
+html body > .ui-modal .crs_passkey_panel {
+  padding: 14px 16px 0;
+}
+
+html body > .ui-modal .ccm_preview {
+  margin: 16px;
+}
+
+html body > .ui-modal .lms_stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 2px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+html body > .ui-modal .lms_stage span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: #ffffff;
+}
+
+html body > .ui-modal .lms_stage svg {
+  width: 20px;
+  height: 20px;
+}
+
+html body > .ui-modal .lms_stage strong {
+  display: block;
+  color: #1C140C;
+  font: 750 14px/1.2 var(--lms-font);
+}
+
+html body > .ui-modal .lms_stage p {
+  margin: 2px 0 0;
+  color: #5c6b84;
+  font: 500 12px/1.45 var(--lms-font);
+}
+
+html body > .ui-modal .lms_stage.is_module span,
+html body > .ui-modal .lms_stage.is_course span,
+html body > .ui-modal .lms_stage.is_program span,
+html body > .ui-modal .lms_stage.is_option span { background: #EB7828; }
+html body > .ui-modal .lms_stage.is_lesson span,
+html body > .ui-modal .lms_stage.is_coding span { background: #2563eb; }
+html body > .ui-modal .lms_stage.is_quiz span { background: #ea580c; }
+html body > .ui-modal .lms_stage.is_people span { background: #0f766e; }
+html body > .ui-modal .lms_stage.is_job span { background: #16a34a; }
+html body > .ui-modal .lms_stage.is_cohort span { background: #7c3aed; }
+html body > .ui-modal .lms_stage.is_passkey span { background: #db2777; }
+
+html body > .ui-modal .prg_form_fields > *,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ui-field,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_row,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_pair,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_triple,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_form_check,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_qedit,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_qedit_head,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) > .ccm_mix,
+html body > .ui-modal .ccm_preview,
+html body > .ui-modal .crs_passkey_panel > .ui-field,
+html body > .ui-modal .prg_desk_picker_bar,
+html body > .ui-modal .prg_desk_picker_list {
+  padding: 12px;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+html body > .ui-modal .prg_form_foot,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) .ccm_form_foot {
+  border-top: 0 !important;
+  background: transparent !important;
+}
+
+html body > .ui-modal .prg_form_foot .ui-button,
+html body > .ui-modal .ccm_form:not(.ccm_item_form) .ccm_form_foot button {
+  width: 100%;
+  min-height: 46px;
+  border: 0 !important;
+  border-radius: 14px !important;
+  letter-spacing: 0 !important;
+  background: #EB7828 !important;
+  color: #ffffff !important;
+  font: 750 14px/1 var(--lms-font) !important;
+}
+
+html body > .ui-modal .ccm_form.is_lesson .ccm_form_foot button,
+html body > .ui-modal .ccm_form.is_coding .ccm_form_foot button {
+  background: #2563eb !important;
+}
+
+html body > .ui-modal .ccm_form.is_quiz .ccm_form_foot button {
+  background: #ea580c !important;
+}
+
+html body > .ui-modal .hkm_form.is_mcq .prg_form_foot .ui-button {
+  background: #ea580c !important;
+}
+
+html body > .ui-modal .hkm_form.is_coding .prg_form_foot .ui-button {
+  background: #2563eb !important;
+}
+
+html body > .ui-modal .hkm_form.is_project .prg_form_foot .ui-button {
+  background: #b45309 !important;
+}
+
+html body > .ui-modal:has(.hkm_form.is_mcq) .ui-modal__head h2 {
+  color: #c2410c !important;
+}
+
+html body > .ui-modal:has(.hkm_form.is_coding) .ui-modal__head h2 {
+  color: #1d4ed8 !important;
+}
+
+html body > .ui-modal:has(.hkm_form.is_project) .ui-modal__head h2 {
+  color: #9a3412 !important;
+}
+
+html body > .ui-modal .prg_form.is_people .prg_form_foot .ui-button { background: #0f766e !important; }
+html body > .ui-modal .prg_form.is_job .prg_form_foot .ui-button { background: #16a34a !important; }
+html body > .ui-modal .prg_form.is_cohort .prg_form_foot .ui-button { background: #7c3aed !important; }
+html body > .ui-modal .is_passkey .prg_form_foot .ui-button,
+html body > .ui-modal .crs_passkey_panel .ui-button {
+  background: #db2777 !important;
+}
+
+a.link_text {
+  display: inline;
+  margin: 0 2px;
+  padding: 1px 9px 2px;
+  border: 1px solid #c5d7f7;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #1d4ed8;
+  font-weight: 650;
+  line-height: 1.55;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+a.link_text:hover {
+  border-color: #9ebff2;
+  background: #dce9ff;
+  color: #1e3a8a;
+}
+
+.dpm-dash:has(.adm_live .ctb) {
+  --lms-shell-pad: 0;
+  --lms-shell-pad-phone: 0;
+  --lms-shell-pad-tablet: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.dpm-dash:has(.adm_live .ctb) .dpm-dash__main {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dpm-dash__main > .adm_live:has(> .ctb) {
+  overflow: hidden;
+}
+
+.dpm-dash__main > .adm_live > .ctb {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+}
+

@@ -1,0 +1,11 @@
+mcp:
+  enabled: false
+  servers:
+    example:
+      name: example
+      transport: stdio
+      command: null
+      args: []
+      env: {}
+      allowed_tools: []
+      denied_tools: []

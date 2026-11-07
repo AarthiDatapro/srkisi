@@ -1,0 +1,131 @@
+/* Rail menubar that widens on hover and shows each item's label (Supabase style).
+    The bar overlays the page, so main keeps its rail-width margin. */
+
+.dpm-dash[data-menubar-theme] .dpm-menubar__item {
+  border-radius: 5px;
+}
+
+@media (min-width: 801px) {
+  .dpm-dash[data-menubar-theme] .dpm-menubar {
+    --lms-rail-open: 220px;
+    align-items: stretch;
+    overflow: hidden;
+    transition: width 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar:hover,
+  .dpm-dash[data-menubar-theme] .dpm-menubar:focus-within {
+    width: var(--lms-rail-open);
+    box-shadow: 12px 0 32px rgba(14, 17, 24, 0.28);
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__logo {
+    position: relative;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    margin-left: 16px;
+    margin-top: 16px !important;
+margin-bottom: 24px !important;
+padding-top: 8px !important;
+padding-bottom: 8px !important;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__logo svg {
+    opacity: 0;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar:hover .dpm-menubar__logo,
+  .dpm-dash[data-menubar-theme] .dpm-menubar:focus-within .dpm-menubar__logo {
+    width: 168px;
+    height: 176px;
+    margin-left: 20px;
+    background-image: url("/srkisi_logo.png");
+    background-size: contain;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__items {
+    align-items: stretch;
+    padding: 0 11px;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__items li {
+    display: flex;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 0 11px;
+    overflow: hidden;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item svg {
+    flex: 0 0 auto;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item::after,
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item:hover::after,
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item:focus-visible::after {
+    position: static;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: none;
+    transition: opacity 0.12s ease;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar:hover .dpm-menubar__item::after,
+  .dpm-dash[data-menubar-theme] .dpm-menubar:focus-within .dpm-menubar__item::after {
+    opacity: 1;
+    transition-delay: 0.06s;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar .adm_nav_group,
+  .dpm-dash[data-menubar-theme] .dpm-menubar .adm_nav_sub {
+    align-items: stretch;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item.adm_nav_parent::after {
+    order: 1;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item .adm_nav_chev {
+    display: block;
+    order: 2;
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    opacity: 0;
+    transition: opacity 0.12s ease, transform 0.18s ease;
+  }
+
+  .dpm-dash[data-menubar-theme] .adm_nav_group.is_open .adm_nav_chev {
+    transform: rotate(180deg);
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar:hover .adm_nav_chev,
+  .dpm-dash[data-menubar-theme] .dpm-menubar:focus-within .adm_nav_chev {
+    opacity: 0.75;
+    transition-delay: 0.06s;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar__item.adm_nav_child {
+    transition: padding 0.18s ease;
+  }
+
+  .dpm-dash[data-menubar-theme] .dpm-menubar:hover .dpm-menubar__item.adm_nav_child,
+  .dpm-dash[data-menubar-theme] .dpm-menubar:focus-within .dpm-menubar__item.adm_nav_child {
+    padding-left: 22px;
+  }
+}

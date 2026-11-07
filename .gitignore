@@ -1,0 +1,21 @@
+# Secrets and local machine files — never commit these.
+
+.env
+**/.env
+*.local
+
+# Local student seed data and quiz run output
+scripts/students.json
+scripts/sic_au.json
+scripts/*_results.json
+
+# Local restore dumps with personal paths
+dataprolms/_restore_preview/
+
+dataprolms/.npmrc
+server/.npmrc
+
+
+lms_notes/
+hackathon_project_submissions/
+server/uploads/

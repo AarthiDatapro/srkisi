@@ -1,0 +1,485 @@
+name: 🚀 Deploy DATAPRO LMS
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  # ============================================================
+  # BUILD APPLICATION
+  # ============================================================
+
+  build:
+    name: 🏗️ Build Application
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # --------------------------------------------------------
+      # Checkout
+      # --------------------------------------------------------
+
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      # --------------------------------------------------------
+      # Node.js
+      # --------------------------------------------------------
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: |
+            dataprolms/package-lock.json
+            server/package-lock.json
+
+      # --------------------------------------------------------
+      # GitHub Packages Authentication
+      # --------------------------------------------------------
+
+      - name: 🔐 Configure GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          echo "@datapromr:registry=https://npm.pkg.github.com" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+
+      # ========================================================
+      # FRONTEND
+      # ========================================================
+
+      - name: 📦 Install Frontend Dependencies
+        working-directory: dataprolms
+        run: npm ci
+
+      - name: 🎨 Build Frontend
+        working-directory: dataprolms
+        env:
+          CI: false
+        run: |
+          export NODE_OPTIONS="--max-old-space-size=4096"
+          npm run build
+
+      # ========================================================
+      # BACKEND
+      # ========================================================
+
+      - name: 📦 Install Backend Production Dependencies
+        working-directory: server
+        run: npm ci --omit=dev
+
+      # ========================================================
+      # CREATE DEPLOYMENT PACKAGE
+      # ========================================================
+
+      - name: 📦 Prepare Deployment Package
+        run: |
+
+          rm -rf deployment
+          mkdir -p deployment
+
+          echo "Copying frontend build..."
+          cp -r dataprolms/dist deployment/frontend
+
+          echo "Copying backend..."
+          cp -r server deployment/server
+
+          echo "Copying AIPipe..."
+          cp -r aipipe deployment/aipipe
+
+          # Do not deploy the server-side Python virtual environment
+          rm -rf deployment/aipipe/.venv
+
+          # Do not deploy Python cache
+          find deployment/aipipe -type d -name "__pycache__" -prune -exec rm -rf {} +
+          
+          echo "Copying scripts..."
+          cp -r scripts deployment/scripts
+
+          # Never deploy production environment
+          rm -f deployment/server/.env
+
+          # Uploaded production assets stay on server
+          rm -rf deployment/server/assets
+
+          # Server already has package registry authentication.
+          # It is not needed because node_modules is included.
+          rm -f deployment/server/.npmrc
+
+          echo "Deployment package prepared."
+
+          echo "Frontend:"
+          du -sh deployment/frontend
+
+          echo "Backend:"
+          du -sh deployment/server
+
+      # ========================================================
+      # CREATE ARCHIVE
+      # ========================================================
+
+      - name: 🗜️ Create Deployment Archive
+        run: |
+          tar -czf datapro-lms.tar.gz -C deployment .
+
+          echo "Deployment archive:"
+          ls -lh datapro-lms.tar.gz
+
+      # ========================================================
+      # UPLOAD ARTIFACT
+      # ========================================================
+
+      - name: 📦 Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: datapro-lms-build
+          path: datapro-lms.tar.gz
+          retention-days: 7
+
+
+  # ============================================================
+  # DEPLOY TO SERVER
+  # ============================================================
+
+  deploy:
+    name: 🚀 Deploy to Droplet
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # --------------------------------------------------------
+      # Download Artifact
+      # --------------------------------------------------------
+
+      - name: 📥 Download Deployment Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: datapro-lms-build
+
+      # --------------------------------------------------------
+      # Upload Archive
+      # --------------------------------------------------------
+
+      - name: 📤 Upload Deployment Package
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ vars.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          source: "datapro-lms.tar.gz"
+          target: "/tmp"
+
+      # --------------------------------------------------------
+      # Deploy
+      # --------------------------------------------------------
+
+      - name: 🚀 Deploy Application
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ vars.DEPLOY_HOST }}
+          username: ${{ vars.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+          script: |
+
+            set -e
+
+            echo "=========================================="
+            echo "🚀 DATAPRO LMS DEPLOYMENT"
+            echo "=========================================="
+
+            APP_DIR="/var/www/datapro-lms"
+            FRONTEND_DIR="$APP_DIR/dataprolms"
+            SERVER_DIR="$APP_DIR/server"
+            AIPIPE_DIR="$APP_DIR/aipipe"
+            SCRIPTS_DIR="$APP_DIR/scripts"
+
+            echo ""
+            echo "📦 Preparing deployment..."
+
+            # ==================================================
+            # Stop backend
+            # ==================================================
+
+            echo "🛑 Stopping backend..."
+
+            systemctl stop datapro-lms
+
+            # ==================================================
+            # Prepare temporary deployment directory
+            # ==================================================
+
+            echo "📂 Extracting deployment package..."
+
+            rm -rf /tmp/datapro-lms-deploy
+
+            mkdir -p /tmp/datapro-lms-deploy
+
+            tar -xzf /tmp/datapro-lms.tar.gz \
+              -C /tmp/datapro-lms-deploy
+
+            # ==================================================
+            # FRONTEND DEPLOYMENT
+            # ==================================================
+
+            echo ""
+            echo "🎨 Deploying frontend..."
+
+            rm -rf "$FRONTEND_DIR/dist"
+
+            mkdir -p "$FRONTEND_DIR"
+
+            cp -a \
+              /tmp/datapro-lms-deploy/frontend \
+              "$FRONTEND_DIR/dist"
+
+            echo "✅ Frontend deployed."
+
+            # ==================================================
+            # BACKEND DEPLOYMENT
+            # ==================================================
+
+            echo ""
+            echo "⚙️ Deploying backend..."
+
+            rsync -a \
+              --delete \
+              --exclude='.env' \
+              --exclude='assets/' \
+              /tmp/datapro-lms-deploy/server/ \
+              "$SERVER_DIR/"
+
+            echo "✅ Backend application deployed."
+
+            # ==================================================
+            # AIPIPE DEPLOYMENT
+            # ==================================================
+            
+            echo ""
+            echo "🤖 Deploying AIPipe..."
+            
+            rsync -a \
+              --delete \
+              --exclude='.env' \
+              --exclude='.venv/' \
+              --exclude='__pycache__/' \
+              /tmp/datapro-lms-deploy/aipipe/ \
+              "$AIPIPE_DIR/"
+            
+            echo "✅ AIPipe source deployed."
+            
+            # ==================================================
+            # AIPIPE PYTHON DEPENDENCIES
+            # ==================================================
+            
+            echo ""
+            echo "📦 Installing AIPipe Python dependencies..."
+            
+            if [ ! -x "$AIPIPE_DIR/.venv/bin/python" ]; then
+              echo "❌ AIPipe virtual environment not found!"
+              exit 1
+            fi
+            
+            "$AIPIPE_DIR/.venv/bin/python" -m pip install \
+              --requirement "$AIPIPE_DIR/requirements.txt"
+            
+            echo "✅ AIPipe dependencies installed."
+            # ==================================================
+            # CREATE AIPIPE PRODUCTION ENVIRONMENT
+            # ==================================================
+
+            echo ""
+            echo "🔐 Creating AIPipe production environment..."
+
+            cat > "$AIPIPE_DIR/.env" << 'EOF'
+            # ==================================================
+            # RESTART AIPIPE
+            # ==================================================
+            
+            echo ""
+            echo "🔄 Restarting AIPipe..."
+            
+            echo ""
+            echo "🛑 Restarting AIPipe..."
+            
+            systemctl restart datapro-aipipe
+            
+            sleep 3
+            
+            if ! systemctl is-active --quiet datapro-aipipe; then
+              echo "❌ AIPipe failed to start!"
+            
+              journalctl \
+                -u datapro-aipipe \
+                -n 80 \
+                --no-pager
+            
+              exit 1
+            fi
+            
+            echo "✅ AIPipe service is running."
+            echo ""
+            echo "🧪 Checking AIPipe..."
+            
+            AIPIPE_HEALTH=$(curl -fsS http://127.0.0.1:8000/)
+            
+            echo "$AIPIPE_HEALTH"
+            
+            if ! echo "$AIPIPE_HEALTH" | grep -q '"status":"healthy"'; then
+              echo "❌ AIPipe health check failed!"
+              exit 1
+            fi
+            
+            echo "✅ AIPipe health check passed."
+
+                       
+            # ==================================================
+            # SCRIPTS DEPLOYMENT
+            # ==================================================
+            
+            echo ""
+            echo "📜 Deploying scripts..."
+            
+            # Sync scripts from the deployment package
+            # --delete ensures the server scripts folder
+            # exactly matches the GitHub repository scripts folder
+            rsync -a \
+            --delete \
+            /tmp/datapro-lms-deploy/scripts/ \
+            "$SCRIPTS_DIR/"
+            
+            echo "✅ Scripts deployed."
+            
+            
+
+            
+            # ==================================================
+            # CREATE PRODUCTION ENVIRONMENT
+            # ==================================================
+
+            echo ""
+            echo "🔐 Creating production .env..."
+
+            cat > "$SERVER_DIR/.env" << 'EOF'
+            ${{ secrets.ENV_FILE }}
+            EOF
+
+            echo "✅ Production .env created."
+
+            # ==================================================
+            # VERIFY ENV FILE
+            # ==================================================
+
+            if [ ! -s "$SERVER_DIR/.env" ]; then
+              echo "❌ ERROR: .env file is empty!"
+              exit 1
+            fi
+
+            # ==================================================
+            # PERMISSIONS
+            # ==================================================
+
+            echo ""
+            echo "🔧 Setting permissions..."
+
+            chown -R root:root "$APP_DIR"
+
+            chmod 600 "$SERVER_DIR/.env"
+
+            # ==================================================
+            # START BACKEND
+            # ==================================================
+
+            echo ""
+            echo "🚀 Starting backend..."
+
+            systemctl start datapro-lms
+
+            # ==================================================
+            # WAIT FOR BACKEND
+            # ==================================================
+
+            echo ""
+            echo "⏳ Waiting for backend..."
+
+            sleep 3
+
+            # ==================================================
+            # VERIFY SYSTEMD
+            # ==================================================
+
+            echo ""
+            echo "🧪 Checking backend service..."
+
+            if ! systemctl is-active --quiet datapro-lms; then
+
+              echo "❌ Backend failed to start!"
+
+              journalctl \
+                -u datapro-lms \
+                -n 80 \
+                --no-pager
+
+              exit 1
+
+            fi
+
+            echo "✅ Backend service is running."
+
+            # ==================================================
+            # VERIFY PORT
+            # ==================================================
+
+            echo ""
+            echo "🔌 Checking port 5000..."
+
+            if ! ss -lntp | grep -q ':5000'; then
+
+              echo "❌ Backend is not listening on port 5000!"
+
+              journalctl \
+                -u datapro-lms \
+                -n 80 \
+                --no-pager
+
+              exit 1
+
+            fi
+
+            echo "✅ Port 5000 is listening."
+
+            # ==================================================
+            # HEALTH CHECK
+            # ==================================================
+
+            echo ""
+            echo "🏥 Checking application health..."
+
+            HEALTH=$(curl -fsS https://lms.datapro.in/health)
+
+            echo "$HEALTH"
+
+            echo "$HEALTH" | grep -q '"status":"ok"'
+
+            echo ""
+            echo "=========================================="
+            echo "✅ DATAPRO LMS DEPLOYMENT SUCCESSFUL"
+            echo "=========================================="
+
+            # ==================================================
+            # CLEANUP
+            # ==================================================
+
+            rm -f /tmp/datapro-lms.tar.gz
+
+            rm -rf /tmp/datapro-lms-deploy

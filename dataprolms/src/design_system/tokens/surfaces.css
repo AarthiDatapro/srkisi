@@ -1,0 +1,17 @@
+/* Single source for the dashboard page surface. Change tokens here to update every screen. */
+:root {
+  --lms-page-bg: #f4f6fb;
+  --lms-page-dot: #d7dce8;
+  --lms-page-dot-size: 16px;
+}
+
+html:has(.dpm-dash),
+body:has(.dpm-dash),
+body:has(.dpm-dash) #root,
+.dpm-dash,
+.dpm-dash .dpm-dash__main {
+  --dpm-dash-bg: var(--lms-page-bg);
+  background-color: var(--lms-page-bg) !important;
+  background-image: radial-gradient(var(--lms-page-dot) 1px, transparent 1px) !important;
+  background-size: var(--lms-page-dot-size) var(--lms-page-dot-size) !important;
+}

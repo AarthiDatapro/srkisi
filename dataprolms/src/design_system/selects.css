@@ -1,0 +1,18 @@
+select,
+select option {
+  color-scheme: light;
+  background-color: #ffffff;
+  color: #1C140C;
+}
+
+select option[value=""] {
+  color: #6b7278;
+}
+
+/* Native menus do not open inside the sheet when appearance is removed. */
+.ui-modal .dpm-select.dpm-select--outlined {
+  appearance: auto;
+  -webkit-appearance: menulist;
+  background-image: none;
+  padding-right: 8px;
+}

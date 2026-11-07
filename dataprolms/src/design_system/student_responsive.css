@@ -1,0 +1,171 @@
+/* Student screens: tablet/phone layout. */
+
+.dpm-dash[data-menubar-theme="student"],
+.dpm-dash[data-menubar-theme="student"] button,
+.dpm-dash[data-menubar-theme="student"] input,
+.dpm-dash[data-menubar-theme="student"] select,
+.dpm-dash[data-menubar-theme="student"] textarea,
+.dpm-dash[data-menubar-theme="student"] .dpm-dash__main h1,
+.stu_reg,
+.stu_reg button,
+.stu_reg input,
+.stu_reg select,
+.stu_reg textarea {
+  font-family: var(--lms-font);
+}
+
+.dpm-dash[data-menubar-theme="student"] .dpm-dash__main h1 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+/* Tablet: 801–1100px. Keep in sync with tokens/breakpoints.css. */
+@media (min-width: 801px) and (max-width: 1100px) {
+  .dpm-dash[data-menubar-theme="student"] .dpm-dash__main {
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: var(--dpm-menubar-width, 4rem) !important;
+    padding: var(--lms-shell-pad-tablet, 0.75rem 1rem 1.25rem) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .dpm-dash[data-menubar-theme="student"] .dpm-dash__main h1,
+  .dpm-dash[data-menubar-theme="student"] .shd_welcome,
+  .stp_page h1,
+  .dpm-dash:has(.adm_live .stp_desk) .dpm-dash__main .stp_page h1,
+  .myc_title h1,
+  .dpm-dash:has(.adm_live .myc_desk) .dpm-dash__main h1,
+  .crg_top h1,
+  .dpm-dash:has(.adm_live .crg_desk) .dpm-dash__main h1 {
+    font-size: 1.125rem !important;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .shd_container,
+  .myc_desk,
+  .crg_desk,
+  .stp_desk,
+  .lrn_desk {
+    gap: 0.6rem;
+  }
+
+  .shd_stats_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .shd_middle_grid,
+  .shd_bottom_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stp_layout {
+    grid-template-columns: 1fr;
+  }
+
+  .stp_page {
+    flex-wrap: wrap;
+  }
+
+  .lrn {
+    grid-template-columns: 1fr;
+  }
+
+  .lrn_side {
+    position: static;
+    height: auto;
+    max-height: min(38svh, 20rem);
+  }
+
+  .lrn_player_frame {
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  .lp_hero_visual {
+    min-height: min(50vw, 22rem);
+  }
+}
+
+/* Phone: 800px and below. Keep in sync with tokens/breakpoints.css. */
+@media (max-width: 800px) {
+  .dpm-dash[data-menubar-theme="student"] .dpm-dash__main h1,
+  .dpm-dash[data-menubar-theme="student"] .shd_welcome,
+  .stp_page h1,
+  .dpm-dash:has(.adm_live .stp_desk) .dpm-dash__main .stp_page h1,
+  .myc_title h1,
+  .dpm-dash:has(.adm_live .myc_desk) .dpm-dash__main h1 {
+    font-size: 1rem !important;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .crg_top h1,
+  .dpm-dash:has(.adm_live .crg_desk) .dpm-dash__main h1 {
+    font-size: 0.875rem !important;
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .shd_subtitle,
+  .myc_title p,
+  .stp_page p {
+    font-size: 0.75rem;
+  }
+
+  .stp_layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lrn_quiz_info_bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lrn_quiz_result_header {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lrn_quiz_metrics_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lrn_quiz_metric_extra {
+    display: none;
+  }
+
+  .lrn_q_head_bar h3 {
+    flex: 0 0 100%;
+  }
+
+  .lrn_q_tags {
+    display: none;
+  }
+
+  .lrn_player_frame {
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  .lrn_chat_modal {
+    height: min(88svh, 36rem);
+    max-height: 88svh;
+    border-radius: 1rem;
+  }
+
+  .crg_details_hero,
+  .crg_details_stats,
+  .crg_details_foot {
+    grid-template-columns: 1fr;
+  }
+}

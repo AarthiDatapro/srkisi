@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Portfolio Page - Personalized Learning</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: #f3f6fb;
+    color: #263247;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+}
+header {
+    background: #233c70;
+    color: white;
+    padding: 28px 20px;
+}
+.container, main {
+    max-width: 1050px;
+    margin: auto;
+}
+header h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+header p {
+    margin: 4px 0;
+    color: #e3eaff;
+}
+main {
+    padding: 20px;
+}
+.section {
+    background: white;
+    padding: 22px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    overflow-wrap: anywhere;
+}
+.section h2 {
+    color: #233c70;
+    border-bottom: 1px solid #e5eaf2;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.item {
+    background: #f7f9fd;
+    border-left: 4px solid #6488d6;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+}
+.item h3 {
+    color: #314e85;
+    margin: 0 0 8px;
+}
+li { margin: 6px 0; }
+a { color: #315fb2; }
+.meta {
+    font-size: 13px;
+    color: #e3eaff;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #667085;
+}
+@media(max-width:600px) {
+    header h1 { font-size: 23px; }
+    .section { padding: 16px; }
+}
+@media print {
+    body { background: white; }
+    .section { box-shadow: none; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Responsive Portfolio Page</h1>
+    <p>Personalized learning guide</p>
+    <p class="meta">
+      Course: 1 |
+      Module: 8 |
+      Lesson: 11
+    </p>
+    <p class="meta">
+      Student: 1
+      | Generated: 2026-09-29 17:57
+    </p>
+  </div>
+</header>
+<main>
+<section class='section' id='objectives'><h2>Learning objectives</h2><ul><li><p>Implement responsive web design using the viewport meta tag and fluid containers</p></li><li><p>Apply a mobile-first design strategy using media queries</p></li><li><p>Utilize relative CSS units and the clamp() function for flexible typography and spacing</p></li><li><p>Differentiate between and implement CSS Flexbox and CSS Grid for responsive layouts</p></li><li><p>Build a semantic portfolio structure that adapts across mobile, tablet, and desktop screens</p></li></ul></section><section class='section' id='introduction'><h2>Personalized introduction</h2><p>Welcome to the Responsive Portfolio Page lesson! Since you haven&#x27;t attempted the assessment for this module yet, this guide will serve as your comprehensive roadmap. We will move from the fundamental concepts of fluid design to the advanced implementation of CSS Grid and Flexbox, ensuring you have everything you need to build a professional, adaptive portfolio.</p></section><section class='section' id='lesson'><h2>Learn the concepts</h2><article class='item'><h3>Responsive Design Fundamentals</h3><p><strong>Explanation:</strong> <p>Responsive design ensures a website adapts to any screen size. It relies on a combination of the viewport meta tag, which tells the browser how to scale the page, and fluid containers that use percentages instead of fixed pixels to prevent horizontal scrolling.</p></p><p><strong>Simple Explanation:</strong> <p>Making a website &#x27;stretchy&#x27; so it looks great on a tiny phone and a giant monitor without the user having to zoom in or scroll sideways.</p></p><p><strong>Example:</strong> <p>.container { width: 92%; max-width: 1100px; margin-inline: auto; }</p></p><p><strong>Key Points</strong></p><ul><li><p>Viewport meta tag is mandatory for mobile responsiveness</p></li><li><p>Use max-width to prevent content from becoming too wide on large screens</p></li><li><p>Avoid fixed widths (px) for main layout containers</p></li></ul></article><article class='item'><h3>Mobile-First Strategy &amp; Media Queries</h3><p><strong>Explanation:</strong> <p>Mobile-first design involves writing the base CSS for the smallest screen first and then using @media queries to add complexity as the screen gets wider. This is called progressive enhancement.</p></p><p><strong>Simple Explanation:</strong> <p>Build the simplest version of your site for phones first, then add &#x27;upgrades&#x27; for tablets and desktops.</p></p><p><strong>Example:</strong> <p>@media (min-width: 768px) { .nav { flex-direction: row; } }</p></p><p><strong>Key Points</strong></p><ul><li><p>Base styles = Mobile</p></li><li><p>Media queries = Desktop enhancements</p></li><li><p>Breakpoints should be based on content needs, not specific device models</p></li></ul></article><article class='item'><h3>Responsive Units &amp; clamp()</h3><p><strong>Explanation:</strong> <p>To achieve true fluidity, relative units like rem, em, %, and viewport units (vw/vh) are used. The clamp() function allows a value to fluctuate between a defined minimum and maximum based on a preferred fluid value.</p></p><p><strong>Simple Explanation:</strong> <p>Using units that change size based on the screen or font settings, rather than staying the same size forever.</p></p><p><strong>Example:</strong> <p>font-size: clamp(2rem, 6vw, 4.5rem);</p></p><p><strong>Key Points</strong></p><ul><li><p>rem: Relative to the root font size</p></li><li><p>vw/vh: Relative to the viewport width/height</p></li><li><p>clamp(): Prevents text from becoming too small on mobile or too huge on desktop</p></li></ul></article><article class='item'><h3>Flexbox vs. CSS Grid</h3><p><strong>Explanation:</strong> <p>Flexbox is one-dimensional (handling either a row or a column), making it ideal for components like navigation bars. CSS Grid is two-dimensional (handling both rows and columns simultaneously), making it perfect for overall page layouts and project galleries.</p></p><p><strong>Simple Explanation:</strong> <p>Use Flexbox for a line of items; use Grid for a table-like layout of items.</p></p><p><strong>Example:</strong> <p>Grid Auto-fit: grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));</p></p><p><strong>Key Points</strong></p><ul><li><p>Flexbox: Best for nav bars and internal card alignment</p></li><li><p>Grid: Best for project galleries and main page structure</p></li><li><p>auto-fit: Automatically calculates how many columns fit in a row</p></li></ul></article></section><section class='section' id='revision'><h2>Revision notes</h2><ul><li><p>Always include the viewport meta tag in the &lt;head&gt; of your HTML.</p></li><li><p>Use &#x27;margin-top: auto&#x27; in a flex-column card to push footer links to the bottom.</p></li><li><p>Set images to &#x27;width: 100%; height: auto;&#x27; to prevent them from breaking the layout.</p></li><li><p>Test responsiveness by resizing the browser window slowly or using DevTools device simulation.</p></li></ul></section><section class='section' id='practice'><h2>Practice questions</h2><article class='item'><h3>Which CSS function allows you to set a minimum, a preferred fluid value, and a maximum value for a property like font-size?</h3><p><strong>Options</strong></p><ul><li><p>calc()</p></li><li><p>minmax()</p></li><li><p>clamp()</p></li><li><p>repeat()</p></li></ul><p><strong>Correct Answer:</strong> <p>clamp()</p></p><p><strong>Explanation:</strong> <p>The clamp() function takes three parameters: the minimum value, the preferred value (often in vw), and the maximum value.</p></p><p><strong>Difficulty:</strong> <p>easy</p></p><p><strong>Related Concept:</strong> <p>Responsive Units &amp; clamp()</p></p></article><article class='item'><h3>When following a &#x27;Mobile-First&#x27; design strategy, how should media queries be structured?</h3><p><strong>Options</strong></p><ul><li><p>Using max-width to target smaller screens</p></li><li><p>Using min-width to add enhancements for larger screens</p></li><li><p>Avoiding media queries entirely in favor of percentages</p></li><li><p>Writing desktop styles first and then using max-width for mobile</p></li></ul><p><strong>Correct Answer:</strong> <p>Using min-width to add enhancements for larger screens</p></p><p><strong>Explanation:</strong> <p>Mobile-first means base styles are for mobile, and @media (min-width: ...) is used to apply styles as the screen grows.</p></p><p><strong>Difficulty:</strong> <p>medium</p></p><p><strong>Related Concept:</strong> <p>Mobile-First Design</p></p></article><article class='item'><h3>Which property is most effective for creating a project gallery that automatically adjusts the number of columns based on available space without using multiple media queries?</h3><p><strong>Options</strong></p><ul><li><p>flex-wrap: wrap</p></li><li><p>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))</p></li><li><p>display: flex</p></li><li><p>justify-content: space-between</p></li></ul><p><strong>Correct Answer:</strong> <p>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))</p></p><p><strong>Explanation:</strong> <p>The auto-fit pattern with minmax allows the browser to fit as many columns as possible while ensuring they never drop below the minimum width (e.g., 240px).</p></p><p><strong>Difficulty:</strong> <p>medium</p></p><p><strong>Related Concept:</strong> <p>Responsive CSS Grid</p></p></article><article class='item'><h3>What is the primary purpose of the &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; tag?</h3><p><strong>Options</strong></p><ul><li><p>To make the website load faster on mobile devices</p></li><li><p>To tell the browser to render the page at the width of the device screen</p></li><li><p>To automatically resize images to fit the screen</p></li><li><p>To enable CSS Grid and Flexbox on mobile browsers</p></li></ul><p><strong>Correct Answer:</strong> <p>To tell the browser to render the page at the width of the device screen</p></p><p><strong>Explanation:</strong> <p>The viewport meta tag ensures the browser uses the actual device width rather than a default desktop width, which is essential for responsive CSS to work.</p></p><p><strong>Difficulty:</strong> <p>easy</p></p><p><strong>Related Concept:</strong> <p>Responsive Design Fundamentals</p></p></article></section><section class='section' id='study-plan'><h2>Your study plan</h2><article class='item'><h3>Review the &#x27;Responsive Design Fundamentals&#x27; and &#x27;Mobile-First&#x27; sections of the guide.</h3><p><strong>Step:</strong> 1</p><p><strong>Estimated Minutes:</strong> 15</p><p><strong>Completion Criteria:</strong> <p>Can explain the difference between absolute and relative units.</p></p></article><article class='item'><h3>Experiment with the clamp() function and viewport units (vw/vh) in a code editor.</h3><p><strong>Step:</strong> 2</p><p><strong>Estimated Minutes:</strong> 20</p><p><strong>Completion Criteria:</strong> <p>Successfully create a heading that changes size fluidly when resizing the window.</p></p></article><article class='item'><h3>Build a simple 3-column project gallery using the CSS Grid auto-fit pattern.</h3><p><strong>Step:</strong> 3</p><p><strong>Estimated Minutes:</strong> 30</p><p><strong>Completion Criteria:</strong> <p>Gallery columns wrap automatically without using @media queries.</p></p></article><article class='item'><h3>Complete the practice questions and review the explanations for any incorrect answers.</h3><p><strong>Step:</strong> 4</p><p><strong>Estimated Minutes:</strong> 15</p><p><strong>Completion Criteria:</strong> <p>Score 100% on the practice questions.</p></p></article></section><section class='section' id='self-assessment'><h2>Self-assessment</h2><article class='item'><h3>Can I explain when to use Flexbox versus CSS Grid in a portfolio project?</h3><p><strong>Expected Understanding:</strong> <p>Flexbox is for 1D layouts (nav bars, card content); Grid is for 2D layouts (page structure, galleries).</p></p></article><article class='item'><h3>Do I understand why we use min-width in a mobile-first approach?</h3><p><strong>Expected Understanding:</strong> <p>Base styles are for the smallest screen; min-width allows us to add complexity as more space becomes available.</p></p></article></section><section class='section' id='sources'><h2>Original lesson materials</h2><ul><li><a target='_blank' rel='noopener noreferrer' href='https://docs.google.com/document/d/1jFX8k6CPuzO76KEv2SBHv6GKrh8d0fAQ/edit?usp=sharing&amp;ouid=113135456377714534885&amp;rtpof=true&amp;sd=true'>Open original lesson material</a></li><li><a target='_blank' rel='noopener noreferrer' href='https://docs.google.com/presentation/d/1J1YTqZ5iY2E6g_vDZupy19hghE-bY7Y4/edit?usp=sharing&amp;ouid=113135456377714534885&amp;rtpof=true&amp;sd=true'>Open original lesson material</a></li></ul></section><section class='section' id='encouragement'><h2>Continue learning</h2><p>You&#x27;re about to master the art of responsive design! Once you get the hang of the &#x27;Mobile-First&#x27; mindset and the power of CSS Grid, you&#x27;ll be able to build websites that look professional on any device. Happy coding!</p></section>
+</main>
+<footer>
+Personalized learning guide generated from lesson materials
+and available assessment evidence.
+</footer>
+</body>
+</html>

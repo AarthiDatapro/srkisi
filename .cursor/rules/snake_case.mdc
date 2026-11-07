@@ -1,0 +1,27 @@
+---
+description: Company snake_case naming — folders, files, functions, variables
+alwaysApply: true
+---
+
+# Naming: snake_case only
+
+This repo uses **one** naming style. Read `CODING_STANDARD.md`.
+
+- Folders and files: `course_manager`, `course_manager.jsx`, `admin_screens.js`
+- Variables and functions: `course_id`, `get_student_profile`, `handle_submit`
+- React components: `Course_Manager` (capital parts, underscores). Never `CourseManager`. Never `course_manager` as a component (React will treat it as HTML).
+- Constants: `ADMIN_SCREEN_IDS`
+- Our CSS classes and our routes: `hero_landing`, `/admin_dashboard`
+- Frontend feature folder name must match the backend feature folder name
+
+Do not introduce kebab-case (`performance-dashboard`) or camelCase (`getStudent`) in our code.
+
+Leave names we do not own:
+
+- React / browser: `useState`, `onClick`, `className`, `setTimeout`, `ResizeObserver`, Intl values like `"2-digit"`
+- Packages: `@datapromr/*` imports, prop names (`variant`, `onChange`), routes like `/api/csrf-token`
+- Package CSS / DOM classes: `.dpm-dash`, `.dpm-dash__main`, `.dpm-select`, `.ui-field`, `.dpm-login-submit__link`, `.gds-toolbar__search`, `.ub-table-wrap`, `.gff-input` (`@datapromr/*` and `@designdaddy/*`)
+- CSS properties: `font-size`
+- Tool files: `vite.config.js`
+
+AppShell main padding belongs in `design_system/shell.css` only — never snake_case package shell or DataGrid selectors, and never set `.dpm-dash__main` padding in feature CSS.

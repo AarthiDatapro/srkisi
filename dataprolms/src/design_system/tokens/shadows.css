@@ -1,0 +1,9 @@
+:root {
+  --lms-shadow: var(--ds-shadow);
+}
+
+.stu_reg {
+  --stu-shadow: var(--lms-shadow);
+  --stu-card-width: min(980px, calc(100% - 48px));
+  --stu-hero-split: 46%;
+}
